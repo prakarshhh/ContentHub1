@@ -1,7 +1,6 @@
 #!/bin/bash
-# Update package list and install Maven
-apt-get update
-apt-get install -y maven
+# Ensure mvnw has correct permissions
+chmod +x mvnw
 
 # Run Maven build
 ./mvnw clean package
