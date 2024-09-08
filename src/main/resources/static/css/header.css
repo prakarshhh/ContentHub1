@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-custom {
+    background-color: #333; /* Dark background */
+    padding: 15px 30px;
+    border-bottom: 2px solid #444; /* Slightly lighter border */
+}
+
+.navbar-custom .navbar-brand {
+    display: flex;
+    align-items: center;
+    color: #f5f5f5; /* Light text color */
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.navbar-custom .navbar-brand i {
+    margin-right: 12px;
+}
+
+.navbar-custom .nav-link {
+    color: #f5f5f5;
+    font-size: 1rem;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #ffcc00; /* Bright color on hover */
+}
+
+.navbar-custom .nav-item .signup-btn {
+    border-radius: 25px; /* More rounded */
+    background-color: #ff5733; /* Vibrant button color */
+    color: #fff;
+    padding: 8px 24px;
+    margin-left: 15px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-custom .nav-item .signup-btn:hover {
+    background-color: #c70039; /* Darker color on hover */
+}
+
+.navbar-custom .navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-custom .navbar-nav .nav-item.centered-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-custom .navbar-nav .nav-item.right-item {
+    display: flex;
+    margin-left: auto;
+}

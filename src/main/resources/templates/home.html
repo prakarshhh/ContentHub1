@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body style="background-color: #1e1e1e; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+
+<div th:replace="/fragments/header :: header"></div>
+
+<div class="container" style="max-width: 900px; margin: auto; padding: 20px;">
+
+    <div th:replace="/fragments/posts :: posts(posts=${posts})"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has('success')) {
+        console.log("Notification triggered");
+        Swal.fire({
+            title: 'Mission Accomplished!',
+            text: 'You’re almost done! Check your inbox for the final link.',
+            icon: 'success',
+            timerProgressBar: true,
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        }).then((result) => {
+            if (result.isConfirmed || result.isDismissed) {
+                // Send the email when the popup is closed
+                const username = localStorage.getItem('user_name');
+                console.log("Stored username: ", username);
+                if (username) {
+                    sendNotificationEmail(username);
+                } else {
+                    console.error('Error: Username not found');
+                }
+            }
+        });
+    }
+
+    function sendNotificationEmail(username) {
+        fetch('/send-notification-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to send email');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Email notification sent successfully:', data);
+        })
+        .catch(error => {
+            console.error('Error while sending email notification:', error);
+        });
+    }
+</script>
+</body>
+</html>
